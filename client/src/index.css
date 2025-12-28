@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+	Theme variables: light (default) and dark (html.dark).
+	Dark theme intentionally uses visually opposite colors and a different font.
+*/
+:root {
+	--bg: #f8fafc;
+	--surface: #ffffff;
+	--text: #0f172a;
+	--muted: #6b7280;
+	--primary: #0ea5a4; /* teal */
+	--accent: #2563eb;  /* blue */
+	--border: rgba(15,23,42,0.06);
+	--glass: rgba(15,23,42,0.04);
+	--card-shadow: 0 6px 18px rgba(15,23,42,0.06);
+	--font-main: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	--font-alt: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+}
+
+/* Dark theme: opposite palette and alternate font */
+html.dark {
+	--bg: #0f172a;
+	--surface: #081028;
+	--text: #e6eef8;
+	--muted: #9ca3af;
+	--primary: #06b6d4; /* brighter teal for contrast */
+	--accent: #60a5fa;  /* softer blue */
+	--border: rgba(230,238,248,0.06);
+	--glass: rgba(230,238,248,0.03);
+	--card-shadow: 0 6px 22px rgba(2,6,23,0.6);
+	--font-main: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+	--font-alt: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+}
+
+html, body { height: 100%; }
+
+body {
+	background-color: var(--bg);
+	color: var(--text);
+	font-family: var(--font-main);
+	transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Background gradients to give distinct moods per theme */
+html { --bg-gradient: linear-gradient(180deg, rgba(14,165,164,0.03), transparent 40%); }
+html.dark { --bg-gradient: radial-gradient(800px 400px at 10% 10%, rgba(6,182,212,0.08), transparent 10%), linear-gradient(180deg, rgba(2,6,23,0.4), transparent 60%); }
+
+body {
+	background-image: var(--bg-gradient);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+/* Card surface styling */
+.card {
+	background-color: var(--surface);
+	color: var(--text);
+	box-shadow: var(--card-shadow);
+	border: 1px solid var(--border);
+}
+
+.muted { color: var(--muted); }
+
+/* Helpers */
+.btn-primary {
+	background-color: var(--primary);
+	color: white;
+}
+
+.accent { color: var(--accent); }
+
+.glass { background-color: var(--glass); }
+
+/* Respect Tailwind's dark mode class utilities if used */
+.transition-theme { transition: background-color 200ms ease, color 200ms ease; }
+
+/* Utility to use theme surface as a background via class name */
+.bg-surface { background-color: var(--surface); }
+
+/* Utility to set text color to the primary accent */
+.text-primary { color: var(--primary); }
